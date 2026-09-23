@@ -1,0 +1,13 @@
+name: VM6 Merge Queue Product Revocation Gate
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  vm6-mq-product-revoke-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deliberate revocation window
+        run: |
+          echo "Holding CI while owner disables Merge Queue product"
+          sleep 150
+          echo "Gate succeeds after product revocation window"
