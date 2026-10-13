@@ -25,7 +25,7 @@ queue_rules:
     merge_conditions:
       - check-success = vm6-rails-never-check-261013
     batch_size: 2
-    batch_max_wait_time: 45 seconds
+    batch_max_wait_time: 180 seconds
     merge_method: merge-batch
     checks_timeout: null
 
