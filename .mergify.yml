@@ -1,10 +1,4 @@
-pull_request_rules:
-  - name: vm6-prmerge-261016
-    conditions:
-      - title ~= ^VM6_PRMERGE_
-    actions:
-      merge:
-        method: merge
+pull_request_rules: []
 commands_restrictions:
   queue:
     conditions:
