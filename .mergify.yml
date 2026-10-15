@@ -6,6 +6,15 @@ commands_restrictions:
 merge_queue:
   mode: serial
   max_parallel_checks: 1
+scopes:
+  source:
+    files:
+      docs:
+        include:
+          - docs/**
+      critical:
+        include:
+          - critical/**
 queue_rules:
   - name: vm6-qrule-new-261005
     queue_conditions:
@@ -16,5 +25,16 @@ queue_rules:
     batch_size: 2
     batch_max_wait_time: 90 seconds
     merge_method: merge
+    max_checks_retries: 0
+    checks_timeout: null
+  - name: vm6-dmerge-261015
+    queue_conditions:
+      - title ~= ^VM6_DMERGE_
+    merge_conditions:
+      - title != VM6_NEVER_ALLOW_DMERGE_261015
+    merge_method: merge
+    batch_size: 1
+    batch_max_wait_time: 15 seconds
+    allow_inplace_checks: false
     max_checks_retries: 0
     checks_timeout: null
