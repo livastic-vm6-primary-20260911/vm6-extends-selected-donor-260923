@@ -6,6 +6,15 @@ commands_restrictions:
 merge_queue:
   mode: serial
   max_parallel_checks: 1
+merge_protections_settings:
+  reporting_method: check-runs
+  post_comment: true
+merge_protections:
+  - name: vm6-mpgate-review-261015
+    if:
+      - title ~= ^VM6_MPGATE_
+    success_conditions:
+      - "#approved-reviews-by >= 1"
 queue_rules:
   - name: vm6-qrule-new-261005
     queue_conditions:
@@ -16,5 +25,15 @@ queue_rules:
     batch_size: 2
     batch_max_wait_time: 90 seconds
     merge_method: merge
+    max_checks_retries: 0
+    checks_timeout: null
+  - name: vm6-mpgate-261015
+    queue_conditions:
+      - title ~= ^VM6_MPGATE_
+    merge_conditions:
+      - title != VM6_NEVER_ALLOW_MPGATE_261015
+    merge_method: merge
+    batch_size: 1
+    batch_max_wait_time: 10 seconds
     max_checks_retries: 0
     checks_timeout: null
