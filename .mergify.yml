@@ -18,3 +18,14 @@ queue_rules:
     merge_method: merge
     max_checks_retries: 0
     checks_timeout: null
+
+  - name: vm6-qpoison-261015
+    queue_conditions:
+      - base = vm6-qpoison-base-261015
+      - title = VM6_QPOISON_261015
+    merge_conditions:
+      - title = VM6_QPOISON_261015
+    merge_method: merge
+    batch_size: 1
+    max_checks_retries: 0
+    checks_timeout: null
