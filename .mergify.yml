@@ -2,7 +2,7 @@ pull_request_rules: []
 commands_restrictions:
   queue:
     conditions:
-      - sender-permission >= write
+      - sender = {{ author }}
 merge_queue:
   mode: serial
   max_parallel_checks: 1
@@ -16,5 +16,15 @@ queue_rules:
     batch_size: 2
     batch_max_wait_time: 90 seconds
     merge_method: merge
+    max_checks_retries: 0
+    checks_timeout: null
+  - name: vm6-qauth-261016
+    queue_conditions:
+      - title ~= ^VM6_QAUTH_
+    merge_conditions:
+      - title != VM6_NEVER_ALLOW_QAUTH_261016
+    merge_method: merge
+    batch_size: 2
+    batch_max_wait_time: 30 seconds
     max_checks_retries: 0
     checks_timeout: null
