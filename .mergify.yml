@@ -18,15 +18,3 @@ queue_rules:
     merge_method: merge
     max_checks_retries: 0
     checks_timeout: null
-
-  - name: vm6-ffdef-261015
-    queue_conditions:
-      - base = vm6-ffdef-base-261015
-      - title = VM6_FFDEF_261015
-    merge_conditions:
-      - title = VM6_FFDEF_261015
-    merge_method: fast-forward
-    batch_size: 1
-    max_checks_retries: 0
-    checks_timeout: null
-    allow_queue_branch_edit: false
