@@ -5,8 +5,7 @@ commands_restrictions:
       - sender-permission >= write
 merge_queue:
   mode: serial
-  max_parallel_checks: 2
-  skip_intermediate_results: true
+  max_parallel_checks: 1
 queue_rules:
   - name: vm6-qrule-new-261005
     queue_conditions:
@@ -17,15 +16,5 @@ queue_rules:
     batch_size: 2
     batch_max_wait_time: 90 seconds
     merge_method: merge
-    max_checks_retries: 0
-    checks_timeout: null
-  - name: vm6-skip-261015
-    queue_conditions:
-      - title ~= ^VM6_SKIP_
-    merge_conditions:
-      - label = VM6_SKIP_OK
-    merge_method: merge
-    batch_size: 1
-    batch_max_wait_time: 10 seconds
     max_checks_retries: 0
     checks_timeout: null
