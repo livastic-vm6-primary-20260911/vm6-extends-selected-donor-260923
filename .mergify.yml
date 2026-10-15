@@ -4,8 +4,18 @@ commands_restrictions:
     conditions:
       - sender-permission >= write
 merge_queue:
-  mode: serial
-  max_parallel_checks: 1
+  mode: parallel
+  max_parallel_checks: 2
+  skip_intermediate_results: true
+scopes:
+  source:
+    files:
+      other:
+        include:
+          - other/**
+      privileged:
+        include:
+          - secret/**
 queue_rules:
   - name: vm6-qrule-new-261005
     queue_conditions:
@@ -16,5 +26,15 @@ queue_rules:
     batch_size: 2
     batch_max_wait_time: 90 seconds
     merge_method: merge
+    max_checks_retries: 0
+    checks_timeout: null
+  - name: vm6-skipx-261016
+    queue_conditions:
+      - title ~= ^VM6_SKIPX_
+    merge_conditions:
+      - check-success = vm6-skipx-gate
+    merge_method: merge
+    batch_size: 1
+    batch_max_wait_time: 10 seconds
     max_checks_retries: 0
     checks_timeout: null
